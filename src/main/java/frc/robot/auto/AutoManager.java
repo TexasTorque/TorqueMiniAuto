@@ -7,35 +7,34 @@ public class AutoManager {
     private static ArrayList<Command> commands = new ArrayList<>();
     private static Command running;
     
-    public static void addCommand(double time, int[] speeds, AutoPorts ports) {
-        commands.add(new Command(time, speeds, ports));
+    public static void addCommand(double time, int[] speeds) {
+        commands.add(new Command(time, speeds));
     }
 
-    public static void run() {
+    public static void run(AutoMotors motors) {
         if (commands.size() == 0) {
-            System.out.println("No autos detected");
+            System.out.println("No auto program detected");
             return;
         }
+        commands.forEach((command) -> command.setMotors(motors));
         
         running = commands.get(0);
     }
 
     public static void continuous() {
-        if (commands.size() == 0) return;
+        if (commands.size() == 0 || running == null) return;
 
         if (!running.hasStarted()) {
-            System.out.println("started");
             running.start();
         }
         
         if (running.hasElapsed()) {
-            running.endContinuous();
+            running.end();
             commands.remove(0);
-            System.out.println("elapsed");
-            if (commands.size() != 0) running = commands.get(0);
+
+            if (commands.size() != 0) {
+                running = commands.get(0);
+            }
         }
-       
-        if (commands.size() == 0) return;
-        running.continuous();
     }
 }
