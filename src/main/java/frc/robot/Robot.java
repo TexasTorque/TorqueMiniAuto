@@ -6,7 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.auto.AutoManager;
-import frc.robot.auto.AutoPorts;
+import frc.robot.auto.AutoMotors;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -16,7 +16,7 @@ import frc.robot.auto.AutoPorts;
  */
 public class Robot extends TimedRobot {
 
-	private AutoPorts ports = new AutoPorts(1, 2, 3, 4);
+	private AutoMotors motors = new AutoMotors(1, 2, 3, 4);
 
 	/**
 	 * This function is run when the robot is first started up and should be used for any
@@ -45,10 +45,11 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		AutoManager.addCommand(2, new int[]{0, 0, 0, 0}, ports);
-		AutoManager.addCommand(2, new int[]{1, 1, 1, 1}, ports);
+		AutoManager.addCommand(2, new int[]{1, 1, 1, 1});
+		AutoManager.addCommand(2, new int[]{0, 0, 0, 0});
+		AutoManager.addCommand(2, new int[]{-1, -1, -1, -1});
 
-		AutoManager.run();
+		AutoManager.run(motors);
 	}
 
 	/** This function is called periodically during autonomous. */
