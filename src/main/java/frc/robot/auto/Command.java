@@ -9,32 +9,26 @@ public class Command {
     private boolean hasStarted;
     private double startTime;
     private double runTime;
-    private AutoPorts ports;
+    private AutoMotors motors;
     private int[] speeds;
 
-    public Command(double time, int[] speeds, AutoPorts ports) {
+    public Command(double time, int[] speeds) {
         this.runTime = time;
-        this.ports = ports;
         this.speeds = speeds;
     }
 
     public void start() {
-        System.out.println("start continuous");
         startTime = Timer.getFPGATimestamp();
         hasStarted = true;
+        
         for (int i = 0; i < 4; i++) {
-            ports.getMotors()[i].set(ControlMode.PercentOutput, speeds[i]);
+            motors.getMotors()[i].set(ControlMode.PercentOutput, speeds[i]);
         }
     }
 
-    public void continuous() {
-        ;
-    }
-
-    public void endContinuous() {
-        System.out.println("End continuous");
+    public void end() {
         for (int i = 0; i  < 4; i++) {
-            ports.getMotors()[i].set(ControlMode.PercentOutput, 0);
+            motors.getMotors()[i].set(ControlMode.PercentOutput, 0);
         }
     }
 
@@ -44,6 +38,10 @@ public class Command {
         }
         
         return false;
+    }
+
+    public void setMotors(AutoMotors ports) {
+        this.motors = ports;
     }
 
     public boolean hasStarted() {
