@@ -1,6 +1,6 @@
 # TorqueMiniAuto
 
-Codebase for **TorqueMiniAuto**, An auto framework writted for time based autos!
+Codebase for **TorqueMiniAuto**, An auto framework written for time based autos!
 
 ## Details
 
