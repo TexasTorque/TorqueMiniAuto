@@ -45,9 +45,9 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		AutoManager.addCommand(2, new int[]{1, 1, 1, 1});
-		AutoManager.addCommand(2, new int[]{0, 0, 0, 0});
-		AutoManager.addCommand(2, new int[]{-1, -1, -1, -1});
+		AutoManager.addCommand(2, new double[]{1, 1, 1, 1});
+		AutoManager.addCommand(2, new double[]{0, 0, 0, 0});
+		AutoManager.addCommand(2, new double[]{-1, -1, -1, -1});
 
 		AutoManager.run(motors);
 	}

@@ -10,9 +10,9 @@ public class Command {
     private double startTime;
     private double runTime;
     private AutoMotors motors;
-    private int[] speeds;
+    private double[] speeds;
 
-    public Command(double time, int[] speeds) {
+    public Command(double time, double[] speeds) {
         this.runTime = time;
         this.speeds = speeds;
     }
