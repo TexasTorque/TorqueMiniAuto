@@ -7,7 +7,7 @@ public class AutoManager {
     private static ArrayList<Command> commands = new ArrayList<>();
     private static Command running;
     
-    public static void addCommand(double time, double[] speeds) {
+    public static void addCommand(double time, AutoSpeeds speeds) {
         commands.add(new Command(time, speeds));
     }
 

@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.auto.AutoManager;
 import frc.robot.auto.AutoMotors;
+import frc.robot.auto.AutoSpeeds;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -15,8 +16,6 @@ import frc.robot.auto.AutoMotors;
  * project.
  */
 public class Robot extends TimedRobot {
-
-	private AutoMotors motors = new AutoMotors(1, 2, 3, 4);
 
 	/**
 	 * This function is run when the robot is first started up and should be used for any
@@ -35,6 +34,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotPeriodic() {}
 
+	private AutoMotors motors = new AutoMotors(1, 2, 3, 4);
+
 	/**
 	 * This autonomous shows how you can create your own to run the motors provided for a
 	 * specific amount of time at a specific speeds. Make sure AutoManager.run() runs
@@ -45,9 +46,9 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		AutoManager.addCommand(2, new double[]{1, 1, 1, 1});
-		AutoManager.addCommand(2, new double[]{0, 0, 0, 0});
-		AutoManager.addCommand(2, new double[]{-1, -1, -1, -1});
+		AutoManager.addCommand(2, new AutoSpeeds(1, 1, 1, 1));
+		AutoManager.addCommand(2, new AutoSpeeds(0, 0, 0, 0));
+		AutoManager.addCommand(2, new AutoSpeeds(-1, -1, -1, -1));
 
 		AutoManager.run(motors);
 	}

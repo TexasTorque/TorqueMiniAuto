@@ -10,9 +10,9 @@ public class Command {
     private double startTime;
     private double runTime;
     private AutoMotors motors;
-    private double[] speeds;
+    private AutoSpeeds speeds;
 
-    public Command(double time, double[] speeds) {
+    public Command(double time, AutoSpeeds speeds) {
         this.runTime = time;
         this.speeds = speeds;
     }
@@ -22,7 +22,7 @@ public class Command {
         hasStarted = true;
         
         for (int i = 0; i < 4; i++) {
-            motors.getMotors()[i].set(ControlMode.PercentOutput, speeds[i]);
+            motors.getMotors()[i].set(ControlMode.PercentOutput, speeds.get(i));
         }
     }
 
